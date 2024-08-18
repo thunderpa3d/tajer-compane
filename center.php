@@ -149,5 +149,27 @@ $conn->close();
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+  const supabaseUrl = 'https://nliykjhrvutuutroslrl.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5saXlramhydnV0dXV0cm9zbHJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjM5Nzc5NTYsImV4cCI6MjAzOTU1Mzk1Nn0.W86PwY5Emb70LgTCMZDZfZqcXGq1bNiUqoQ0WeJHhyc';
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  async function fetchData() {
+    let { data, error } = await supabase
+      .from('your-table') // استبدل 'your-table' باسم الجدول الخاص بك
+      .select('*');
+
+    if (error) {
+      console.error('Error fetching data:', error);
+    } else {
+      console.log('Fetched data:', data);
+    }
+  }
+
+  fetchData(); // استدعاء الوظيفة لعرض البيانات
+</script>
+
 </body>
 </html>

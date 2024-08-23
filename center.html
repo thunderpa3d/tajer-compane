@@ -6,6 +6,7 @@
     <title>تاجر براحتك</title>  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
         body {
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
@@ -81,21 +82,15 @@
             color: #007bff;
             cursor: pointer;
         }
+
+
         .categories {
-    display: flex;
-    
-    
+    display: flex;   
 justify-content: space-around;
-    
-    
 margin-bottom: 20px;
-    
-    
 padding: 10px;
     background: #ffffff;
     border-radius: 15px;
-    
-    
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -170,7 +165,7 @@ justify-content: center;
     }
 }
 
-       /* تنسيق الفوتر */
+ /* تنسيق الفوتر */
 .magic-footer {
     display: flex;
     justify-content: space-around; /* توزيع العناصر بشكل متساوي */
@@ -222,10 +217,6 @@ justify-content: center;
     transform: rotate(15deg);
 }
 
-/* أيقونات Font Awesome */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-
-/* تصميم متجاوب للقائمة الرئيسية */
 
     </style>
 </head>
@@ -267,8 +258,66 @@ justify-content: center;
             <span>الرسائل</span>
         </a>
     </footer>
-    
-    <script type="module" src="script2.js"></script>
+    <script>
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const supabaseUrl = 'https://lnmiqfeoninnhywbtzqs.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWlxZmVvbmlubmh5d2J0enFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNTIwNzAsImV4cCI6MjAzOTcyODA3MH0.DMwYJwwdOeJ7zdHaFS-2sTiYXdX9rQt06TadDGTfU3U';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    async function fetchPosts() {
+        const { data: posts, error } = await supabase
+            .from('posts') // تأكد من صحة اسم الجدول
+            .select(`
+                id, 
+                content, 
+                media_url, 
+                created_at, 
+                user_id (username)
+            `)
+            .order('id', { ascending: false });
+
+        if (error) {
+            console.error('Error fetching posts:', error);
+            return;
+        }
+
+        const postsContainer = document.getElementById('posts-container');
+        postsContainer.innerHTML = '';
+
+        posts.forEach(post => {
+            const postCard = document.createElement('div');
+            postCard.className = 'post-card';
+
+            let mediaContent = '';
+            if (post.media_url) {
+                if (/\.(jpg|jpeg|png|gif)$/i.test(post.media_url)) {
+                    mediaContent = `<img src="${post.media_url}" alt="Media">`;
+                } else if (/\.(mp4|webm|ogg)$/i.test(post.media_url)) {
+                    mediaContent = `<video controls>
+                                    <source src="${post.media_url}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>`;
+                }
+            }
+
+            postCard.innerHTML = `
+                <h5>${post.users.username}</h5>
+                <p>${post.content.replace(/\n/g, '<br>')}</p>
+                ${mediaContent}
+                <div class="post-footer">
+                    <button>Like</button>
+                    <button>Add to Favorites</button>
+                    <span>${new Date(post.created_at).toLocaleDateString()}</span>
+                    <span>Views: 123</span> <!-- Adjust as needed -->
+                </div>
+            `;
+            postsContainer.appendChild(postCard);
+        });
+    }
+
+    fetchPosts();
+</script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

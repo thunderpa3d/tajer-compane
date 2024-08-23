@@ -25,17 +25,17 @@
 <body>
     <div class="container">
         <div class="card p-4">
-            <h2 class="card-title">Upload Media</h2>
-            <form action="upload.php" method="post" enctype="multipart/form-data">
+            <h2 class="card-title">نشر تجارة جديدة </h2>
+            <form action="post.html" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="content">Description</label>
+                    <label for="content">أدخل الوصف </label>
                     <textarea name="content" id="content" class="form-control" rows="4" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="media">Choose file</label>
+                    <label for="media">أختر ملف الوسائط</label>
                     <input type="file" name="media" id="media" class="form-control" accept="image/*,video/*" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Post</button>
+                <button type="submit" class="btn btn-primary">نشر </button>
             </form>
         </div>
     </div>
@@ -47,11 +47,12 @@
             <i class="fa fa-upload"></i>
             <span>إضافة إعلان</span>
         </a>
-        </a> <a href="center.php" class="nav-item">
+        </a> <a href="center.html" class="nav-item">
             <i class="fa fa-home"></i>
             <span>الرئيسية</span>
         </a>
     </footer>
+    <script type="module" src="script2.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

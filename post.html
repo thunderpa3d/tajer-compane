@@ -61,22 +61,23 @@
             <span>الرئيسية</span>
         </a>
     </footer>
+    <!-- Load Supabase JavaScript SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
     <script>
-        // إعداد Supabase
+        // Initialize Supabase
         const supabaseUrl = 'https://lnmiqfeoninnhywbtzqs.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWlxZmVvbmlubmh5d2J0enFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNTIwNzAsImV4cCI6MjAzOTcyODA3MH0.DMwYJwwdOeJ7zdHaFS-2sTiYXdX9rQt06TadDGTfU3U';
         const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         document.getElementById('tradeForm').addEventListener('submit', async function(event) {
-            event.preventDefault(); // منع التحديث التلقائي للصفحة
+            event.preventDefault(); // Prevent the default form submission
 
             const content = document.getElementById('content').value;
             const price = document.getElementById('price').value;
             const location = document.getElementById('location').value;
             const mediaFile = document.getElementById('media').files[0];
 
-            // رفع ملف الوسائط إلى Supabase Storage
+            // Upload media file to Supabase Storage
             let mediaUrl = '';
             if (mediaFile) {
                 const { data, error } = await supabase.storage
@@ -92,17 +93,17 @@
                 mediaUrl = data.Key;
             }
 
-            // إدخال بيانات التجارة في جدول Supabase
+            // Insert trade data into Supabase
             const { error } = await supabase
                 .from('trades')
                 .insert([{ content, price, location, media_url: mediaUrl }]);
             
             if (error) {
-                console.error('هناك خطأ في رفع الملفات:', error.message);
+                console.error('Error inserting data:', error.message);
                 alert('حدث خطأ أثناء نشر التجارة');
             } else {
                 alert('تم نشر التجارة بنجاح');
-                window.location.href = 'center.html'; // توجيه المستخدم إلى صفحة المركز بعد النجاح
+                window.location.href = 'center.html'; // Redirect to the center page after success
             }
         });
     </script>

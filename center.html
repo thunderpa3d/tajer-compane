@@ -1,48 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تاجر براحتك</title>
-    <link rel="stylesheet" href="styles2.css">
+    <title>تاجر براحتك</title>  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* دعم اللغة العربية */
         }
         .container {
-            margin-top: 20px;
-        }
-        .search-bar {
-            margin-bottom: 20px;
+            margin-top: 4px;
+            padding: 0 15px;
         }
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* تعديل لتحريك البحث والاسم على الأطراف */
             align-items: center;
-            background-color: #007bff;
+            background: linear-gradient(49deg, #0c3397, #0eb6a8);
             color: white;
-            padding: 10px;
+            padding: 7px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
         .header .site-name {
             font-size: 24px;
+            font-weight: bold;
+        }
+        .header .search-bar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            margin-left: 20px;
         }
         .header .search-bar input {
             width: 100%;
+            padding: 8px 10px;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .header .search-bar i {
+            color: #ffffff;
         }
         .colored-bar {
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            background: linear-gradient(to right, #1983a3, #05c5b2);
             height: 10px;
             margin-bottom: 20px;
+            margin-top: 60px;
         }
         .post-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
             padding: 20px;
+            backdrop-filter: blur(10px);
         }
         .post-card img, .post-card video {
             max-width: 100%;
@@ -60,96 +81,194 @@
             color: #007bff;
             cursor: pointer;
         }
+        .categories {
+    display: flex;
+    
+    
+justify-content: space-around;
+    
+    
+margin-bottom: 20px;
+    
+    
+padding: 10px;
+    background: #ffffff;
+    border-radius: 15px;
+    
+    
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.categories ul {
+list-style: none;
+    
+    
+display: flex;
+    padding: 0;
+    margin: 0;
+    
+    
+width: 100%;
+    justify-content: space-around;
+}
+
+.categories li {
+    
+
+text-align: center;
+    
+    
+display: flex;
+    
+  
+align-items: center; /* محاذاة الأيقونات والنصوص عموديًا */
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.categories li:hover {
+    background-color: #0bc5ac;
+}
+
+.categories a {
+    
+   
+text-decoration: none;
+    
+   
+color: #333;
+    font-size: 16px;
+    display: flex;
+    
+
+align-items: center; /* محاذاة الأيقونات والنصوص عموديًا */
+}
+
+.categories i {
+    margin-left: 10px;
+    
+   
+font-size: 20px;
+    color: #0eb6a8;
+}
+
+@media (max-width: 768px) {
+    .categories li {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .categories li {
+        flex: 1 1 100%;
+        
+    
+
+        
+justify-content: center;
+    }
+}
+
+       /* تنسيق الفوتر */
+.magic-footer {
+    display: flex;
+    justify-content: space-around; /* توزيع العناصر بشكل متساوي */
+    align-items: center;
+    background: linear-gradient(45deg, #1b9d76, #2a5298); /* تدرج لوني */
+    padding: 10px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2); /* ظل خفيف أسفل القائمة */
+    border-radius: 15px; /* زوايا مدورة للقائمة */
+    position: fixed; /* جعل القائمة ثابتة في أسفل الشاشة */
+    bottom: 8px; /* وضعها في أسفل الشاشة */
+    left: 30px; /* تباعد 10 بكسل عن الجانب الأيسر */
+    right: 30px; /* تباعد 10 بكسل عن الجانب الأيمن */
+    max-width: calc(100% - 20px); /* تأكد من أن العرض لا يتجاوز عرض الشاشة مع التباعد */
+}
+
+.nav-item {
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s, transform 0.3s;
+    font-size: 100px;
+    border-radius: 5px; /* زوايا مدورة */
+}
+
+.nav-item i {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.nav-item span {
+    display: block;
+    font-size: 12px;
+}
+
+.nav-item:hover {
+    background-color: #0f9397; /* تغيير الخلفية عند التمرير */
+    color: #ffffff;
+    transform: scale(1.5);
+}
+
+/* إضافة تأثير حركة للأيقونات */
+.nav-item i {
+    transition: color 0.8s, transform 0.5s;
+}
+
+.nav-item:hover i {
+    color: #27d7dd;
+    transform: rotate(15deg);
+}
+
+/* أيقونات Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+/* تصميم متجاوب للقائمة الرئيسية */
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="site-name">تاجر براحتك</div>
-            <div class="search-bar">
-                <input type="text" class="form-control" placeholder="Search...">
-            </div>
+    <div class="header">
+        <div class="site-name">تاجر براحتك</div>
+        <div class="search-bar">
+            <input type="text" placeholder="بحث...">
+            <i class="fa fa-search"></i>
         </div>
+    </div>
+    <div class="container">
         <div class="colored-bar"></div>
 
-        <div id="posts-container"></div>
+        <aside class="categories">
+            <ul>
+                <li><i class="fas fa-car"></i><a href="#">سيارات</a></li>
+                <li><i class="fas fa-mobile-alt"></i><a href="#">جوالات</a></li>
+                <li><i class="fas fa-couch"></i><a href="#">أثاث</a></li>
+                <li><i class="fas fa-home"></i><a href="#">عقارات</a></li>
+                <li><i class="fas fa-th-large"></i><a href="#">جميع الفئات</a></li>
+            </ul>
+        </aside>
 
+        <div id="posts-container"></div>
     </div>
     <footer class="magic-footer">
-        <a href="chat.html" class="nav-item">
-            <i class="fa fa-envelope"></i>
-            <span>الرسائل</span>
+        <a href="center.html" class="nav-item">
+            <i class="fa fa-home"></i>
+            <span>الرئيسية</span>
+        </a>
+       
         <a href="post.html" class="nav-item">
             <i class="fa fa-upload"></i>
             <span>إضافة إعلان</span>
         </a>
-        </a> <a href="center.html" class="nav-item">
-            <i class="fa fa-home"></i>
-            <span>الرئيسية</span>
+        <a href="chat.html" class="nav-item">
+            <i class="fa fa-envelope"></i>
+            <span>الرسائل</span>
         </a>
     </footer>
     
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
-        const supabaseUrl = 'https://nliykjhrvutuutroslrl.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5saXlramhydnV0dXV0cm9zbHJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjM5Nzc5NTYsImV4cCI6MjAzOTU1Mzk1Nn0.W86PwY5Emb70LgTCMZDZfZqcXGq1bNiUqoQ0WeJHhyc';
-        const supabase = createClient(supabaseUrl, supabaseKey);
-
-        async function fetchPosts() {
-            const { data: posts, error } = await supabase
-                .from('posts')  // افترض أن الجدول باسم 'posts'
-                .select(`
-                    id, 
-                    content, 
-                    media_url, 
-                    created_at, 
-                    users (username)
-                `)
-                .order('id', { ascending: false });
-
-            if (error) {
-                console.error('Error fetching posts:', error);
-                return;
-            }
-
-            const postsContainer = document.getElementById('posts-container');
-            postsContainer.innerHTML = '';
-
-            posts.forEach(post => {
-                const postCard = document.createElement('div');
-                postCard.className = 'post-card';
-
-                let mediaContent = '';
-                if (post.media_url) {
-                    if (/\.(jpg|jpeg|png|gif)$/i.test(post.media_url)) {
-                        mediaContent = `<img src="${post.media_url}" alt="Media">`;
-                    } else if (/\.(mp4|webm|ogg)$/i.test(post.media_url)) {
-                        mediaContent = `<video controls>
-                                            <source src="${post.media_url}" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>`;
-                    }
-                }
-
-                postCard.innerHTML = `
-                    <h5>${post.users.username}</h5>
-                    <p>${post.content.replace(/\n/g, '<br>')}</p>
-                    ${mediaContent}
-                    <div class="post-footer">
-                        <button>Like</button>
-                        <button>Add to Favorites</button>
-                        <span>${new Date(post.created_at).toLocaleDateString()}</span>
-                        <span>Views: 123</span> <!-- Adjust as needed -->
-                    </div>
-                `;
-                postsContainer.appendChild(postCard);
-            });
-        }
-
-        fetchPosts();  // استدعاء الوظيفة لعرض البيانات عند تحميل الصفحة
-    </script>
-
+    <script type="module" src="script2.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

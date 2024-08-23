@@ -25,17 +25,25 @@
 <body>
     <div class="container">
         <div class="card p-4">
-            <h2 class="card-title">نشر تجارة جديدة </h2>
-            <form action="post.html" method="post" enctype="multipart/form-data">
+            <h2 class="card-title">نشر تجارة جديدة</h2>
+            <form id="tradeForm" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="content">أدخل الوصف </label>
+                    <label for="content">أدخل الوصف</label>
                     <textarea name="content" id="content" class="form-control" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price">أدخل السعر</label>
+                    <input type="number" name="price" id="price" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">أدخل الموقع</label>
+                    <input type="text" name="location" id="location" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="media">أختر ملف الوسائط</label>
                     <input type="file" name="media" id="media" class="form-control" accept="image/*,video/*" required>
                 </div>
-                <button type="submit" class="btn btn-primary">نشر </button>
+                <button type="submit" class="btn btn-primary">نشر</button>
             </form>
         </div>
     </div>
@@ -43,16 +51,38 @@
         <a href="chat.html" class="nav-item">
             <i class="fa fa-envelope"></i>
             <span>الرسائل</span>
+        </a>
         <a href="post.html" class="nav-item">
             <i class="fa fa-upload"></i>
             <span>إضافة إعلان</span>
         </a>
-        </a> <a href="center.html" class="nav-item">
+        <a href="center.html" class="nav-item">
             <i class="fa fa-home"></i>
             <span>الرئيسية</span>
         </a>
     </footer>
-    <script type="module" src="script2.js"></script>
+    <script type="module">
+        document.getElementById('tradeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // منع التحديث التلقائي للصفحة
+
+            const formData = new FormData(this);
+
+            fetch('post.html', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    alert('تم نشر التجارة بنجاح');
+                    window.location.href = 'center.html'; // توجيه المستخدم إلى صفحة المركز بعد النجاح
+                } else {
+                    alert('حدث خطأ أثناء نشر التجارة');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء الاتصال بالخادم');
+            });
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

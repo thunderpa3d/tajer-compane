@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول أو الاشتراك</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylessig.css">
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+        // إعداد Supabase
+        const supabaseUrl = 'https://lnmiqfeoninnhywbtzqs.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWlxZmVvbmlubmh5d2J0enFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNTIwNzAsImV4cCI6MjAzOTcyODA3MH0.DMwYJwwdOeJ7zdHaFS-2sTiYXdX9rQt06TadDGTfU3U'
+        const supabase = createClient(supabaseUrl, supabaseKey)
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('login-form');
+
+            loginForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // منع إعادة تحميل الصفحة
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password,
+                })
+
+                if (error) {
+                    alert('Login failed: ' + error.message);
+                } else {
+                    alert('Login successful!');
+                    window.location.href = 'center.html'; // إعادة توجيه المستخدم بعد تسجيل الدخول الناجح
+                }
+            });
+
+            document.getElementById('signup').addEventListener('click', function() {
+                window.location.href = "signup.html"; // الانتقال إلى صفحة الاشتراك
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="site-name">تاجر براحتك</div>
+    </div>
+    <div class="container">
+        <div class="colored-bar"></div>
+        <div class="post-card">
+            <form id="login-form">
+                <h2>تسجيل الدخول</h2>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور:</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+                <div class="toggle-form">
+                    <p>ليس لديك حساب؟ <a id="signup">أشترك معنا</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -61,26 +61,49 @@
             <span>الرئيسية</span>
         </a>
     </footer>
-    <script type="module">
-        document.getElementById('tradeForm').addEventListener('submit', function(event) {
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
+    <script>
+        // إعداد Supabase
+        const supabaseUrl = 'https://lnmiqfeoninnhywbtzqs.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWlxZmVvbmlubmh5d2J0enFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNTIwNzAsImV4cCI6MjAzOTcyODA3MH0.DMwYJwwdOeJ7zdHaFS-2sTiYXdX9rQt06TadDGTfU3U';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        document.getElementById('tradeForm').addEventListener('submit', async function(event) {
             event.preventDefault(); // منع التحديث التلقائي للصفحة
 
-            const formData = new FormData(this);
+            const content = document.getElementById('content').value;
+            const price = document.getElementById('price').value;
+            const location = document.getElementById('location').value;
+            const mediaFile = document.getElementById('media').files[0];
 
-            fetch('post.html', {
-                method: 'POST',
-                body: formData
-            }).then(response => {
-                if (response.ok) {
-                    alert('تم نشر التجارة بنجاح');
-                    window.location.href = 'center.html'; // توجيه المستخدم إلى صفحة المركز بعد النجاح
-                } else {
-                    alert('حدث خطأ أثناء نشر التجارة');
+            // رفع ملف الوسائط إلى Supabase Storage
+            let mediaUrl = '';
+            if (mediaFile) {
+                const { data, error } = await supabase.storage
+                    .from('media')
+                    .upload(`public/${mediaFile.name}`, mediaFile);
+                
+                if (error) {
+                    console.error('Error uploading media:', error.message);
+                    alert('حدث خطأ أثناء رفع ملف الوسائط');
+                    return;
                 }
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('حدث خطأ أثناء الاتصال بالخادم');
-            });
+                
+                mediaUrl = data.Key;
+            }
+
+            // إدخال بيانات التجارة في جدول Supabase
+            const { error } = await supabase
+                .from('trades')
+                .insert([{ content, price, location, media_url: mediaUrl }]);
+            
+            if (error) {
+                console.error('هناك خطأ في رفع الملفات:', error.message);
+                alert('حدث خطأ أثناء نشر التجارة');
+            } else {
+                alert('تم نشر التجارة بنجاح');
+                window.location.href = 'center.html'; // توجيه المستخدم إلى صفحة المركز بعد النجاح
+            }
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

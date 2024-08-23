@@ -3,41 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"></script>
-</head>
-<body>
-    <form id="signup-form">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Signup</button>
-    </form>
+    <title>أشتراك</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylessig.css">
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-    <script>
-        const supabaseUrl = 'https://nliykjhrvutuutroslrl.supabase.co'; // استبدل بعنوان URL الخاص بـ Supabase
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5saXlramhydnV0dXV0cm9zbHJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjM5Nzc5NTYsImV4cCI6MjAzOTU1Mzk1Nn0.W86PwY5Emb70LgTCMZDZfZqcXGq1bNiUqoQ0WeJHhyc'; // استبدل بالمفتاح الخاص بك
+         // إعداد Supabase
+         const supabaseUrl = 'https://lnmiqfeoninnhywbtzqs.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWlxZmVvbmlubmh5d2J0enFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNTIwNzAsImV4cCI6MjAzOTcyODA3MH0.DMwYJwwdOeJ7zdHaFS-2sTiYXdX9rQt06TadDGTfU3U'
+        const supabase = createClient(supabaseUrl, supabaseKey)
 
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        document.addEventListener('DOMContentLoaded', () => {
+            const signupForm = document.getElementById('signup-form');
 
-        document.getElementById('signup-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            signupForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
 
-            // قم بإنشاء المستخدم في Supabase
-            const { data, error } = await supabase
-                .from('users') // تأكد من اسم الجدول في Supabase
-                .insert([{ username: username, password: password }]);
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
 
-            if (error) {
-                console.error('Error inserting data:', error);
-                alert('Error: ' + error.message);
-            } else {
-                alert('Signup successful!');
-                window.location.href = 'center.html';
-            }
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                })
+
+                if (error) {
+                    alert('Signup failed: ' + error.message);
+                } else {
+                    alert('تم تسجيل الأشتراك بنجاح راجع بريدك الإلكتروني لتفعيل الحساب .');
+                    window.location.href = 'login.html'; // Redirect to login page after successful signup
+                }
+            });
         });
     </script>
+</head>
+<body>
+    <div class="auth-container">
+        <h2>إنشاء حساب </h2>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" class="form-control" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">كلمة المرور:</label>
+                <input type="password" id="password" class="form-control" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">أشتراك</button>
+        </form>
+        <div class="toggle-form">
+            هل لديك حساب بلفعل ? <a href="login.html">سجل دخول </a>
+        </div>
+    </div>
 </body>
 </html>

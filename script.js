@@ -23,7 +23,7 @@ function uploadMedia() {
             };
             mediaItems.push(mediaItem);
             localStorage.setItem('mediaItems', JSON.stringify(mediaItems));
-            navigateTo('center.php');
+            navigateTo('center.html');
         };
         reader.readAsDataURL(file);
     } else {

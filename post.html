@@ -85,7 +85,7 @@
                     .upload(`public/${mediaFile.name}`, mediaFile);
                 
                 if (error) {
-                    console.error('Error uploading media:', error.message);
+                    console.error('حدث خطأ في رفع الوسائط :', error.message);
                     alert('حدث خطأ أثناء رفع ملف الوسائط');
                     return;
                 }
@@ -99,7 +99,7 @@
                 .insert([{ content, price, location, media_url: mediaUrl }]);
             
             if (error) {
-                console.error('Error inserting data:', error.message);
+                console.error('حدث خطأ في رفع الملفات:', error.message);
                 alert('حدث خطأ أثناء نشر التجارة');
             } else {
                 alert('تم نشر التجارة بنجاح');

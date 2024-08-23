@@ -1,0 +1,85 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #2af2cddb 0%, #092082d2 100%);
+    font-family: Arial, sans-serif;
+}
+
+.site-name {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #092082d2;
+}
+
+.auth-container {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    background: rgba(206, 206, 206, 0.634);
+    box-shadow: 0 4px 30px rgba(231, 226, 226, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+}
+
+.auth-container h2 {
+    color: #fff;
+    text-align: center;
+}
+
+.form-group label {
+    color: #fff;
+}
+
+.form-control {
+    background: rgba(241, 237, 237, 0.622);
+    border: 1px solid rgba(108, 103, 103, 0.315);
+    color: #fff;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-control:focus {
+    background: rgba(188, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2fcea4 0%, #031668 100%);
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0825a4 0%, #74ebd5 100%);
+}
+
+.toggle-form {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.toggle-form a {
+    cursor: pointer;
+    color: #0b5edb;
+    text-decoration: none;
+}
+
+.toggle-form a:hover {
+    color: #ACB6E5;
+}
+
+#signupMessage {
+    color: #ffffff;
+}

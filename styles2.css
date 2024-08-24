@@ -2,14 +2,16 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5; /* خلفية الصفحة */
+    background: linear-gradient(45deg, #a2f9df, #d4dded); /* تدرج لوني */
 }
 
 header {
-    background: #007bff;
+    background: linear-gradient(45deg, #1b9d76, #2a5298); /* تدرج لوني */
     color: #fff;
     padding: 10px;
     text-align: center;
+    border-radius: 5px; /* زوايا مدورة */
+    
 }
 
 .chat {
@@ -19,6 +21,7 @@ header {
     min-height: 80vh;
     padding: 20px;
     box-sizing: border-box;
+    
 }
 
 .chat-container {
@@ -108,7 +111,7 @@ button {
 }
 
 button:hover {
-    background-color: #218838; /* لون خلفية الزر عند التمرير */
+    background-color: #1a5c28; /* لون خلفية الزر عند التمرير */
 }
 
 /* تصميم متجاوب لصفحة الدردشة */
@@ -121,12 +124,11 @@ button:hover {
         margin-bottom: 10px;
     }
 }
-/* تنسيق الفوتر */
 .magic-footer {
     display: flex;
     justify-content: space-around; /* توزيع العناصر بشكل متساوي */
     align-items: center;
-    background: linear-gradient(45deg, #1e3c72, #2a5298); /* تدرج لوني */
+    background: linear-gradient(45deg, #1b9d76, #2a5298); /* تدرج لوني */
     padding: 10px;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2); /* ظل خفيف أسفل القائمة */
     border-radius: 15px; /* زوايا مدورة للقائمة */
@@ -134,7 +136,8 @@ button:hover {
     bottom: 8px; /* وضعها في أسفل الشاشة */
     left: 30px; /* تباعد 10 بكسل عن الجانب الأيسر */
     right: 30px; /* تباعد 10 بكسل عن الجانب الأيمن */
-    max-width: calc(100% - 20px); /* تأكد من أن العرض لا يتجاوز عرض الشاشة مع التباعد */
+    max-width: calc(100% - 60px); /* تأكد من أن العرض لا يتجاوز عرض الشاشة مع التباعد */
+    flex-direction: row; /* ترتيب العناصر بشكل أفقي */
 }
 
 .nav-item {
@@ -142,7 +145,7 @@ button:hover {
     color: #fff;
     text-decoration: none;
     transition: color 0.2s, transform 0.3s;
-    font-size: 100px;
+    font-size: 16px;
     border-radius: 5px; /* زوايا مدورة */
 }
 
@@ -157,12 +160,6 @@ button:hover {
     font-size: 12px;
 }
 
-.nav-item:hover {
-    background-color: #0f9397; /* تغيير الخلفية عند التمرير */
-    color: #ffffff;
-    transform: scale(1.5);
-}
-
 /* إضافة تأثير حركة للأيقونات */
 .nav-item i {
     transition: color 0.8s, transform 0.5s;
@@ -171,4 +168,18 @@ button:hover {
 .nav-item:hover i {
     color: #27d7dd;
     transform: rotate(15deg);
+}
+
+@media (max-width: 576px) {
+    .magic-footer {
+        flex-direction: row; /* تأكد من أن العناصر تبقى مرتبة بشكل أفقي حتى على الشاشات الصغيرة */
+    }
+
+    .nav-item i {
+        font-size: 20px; /* تصغير حجم الأيقونة قليلاً على الشاشات الصغيرة */
+    }
+
+    .nav-item span {
+        font-size: 10px; /* تصغير حجم النص تحت الأيقونات على الشاشات الصغيرة */
+    }
 }

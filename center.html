@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تاجر براحتك</title>  
+    <title>تاجر براحتك</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
         body {
             font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            background-color: #e0e0e0af;
             margin: 0;
             padding: 0;
             direction: rtl; /* دعم اللغة العربية */
         }
         .container {
-            margin-top: 4px;
+            margin-top: 60px; /* مساحة أعلى للمحتوى أسفل الرأس الثابت */
             padding: 0 15px;
         }
         .header {
             display: flex;
-            justify-content: flex-end; /* تعديل لتحريك البحث والاسم على الأطراف */
+            justify-content: space-between; /* توزيع العناصر بين الحافتين */
             align-items: center;
             background: linear-gradient(49deg, #0c3397, #0eb6a8);
             color: white;
-            padding: 7px;
+            padding: 10px 15px;
             position: fixed;
             top: 0;
             left: 0;
@@ -32,19 +31,18 @@
             z-index: 1000;
         }
         .header .site-name {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
         }
         .header .search-bar {
             display: flex;
             align-items: center;
             width: 100%;
-            max-width: 400px;
-            margin-left: 20px;
+            max-width: 300px;
         }
         .header .search-bar input {
             width: 100%;
-            padding: 8px 10px;
+            padding: 8px;
             border: none;
             border-radius: 5px;
             margin-left: 10px;
@@ -82,91 +80,80 @@
             color: #007bff;
             cursor: pointer;
         }
-
-
         .categories {
-    display: flex;   
-justify-content: space-around;
-margin-bottom: 20px;
-padding: 10px;
-    background: #ffffff;
-    border-radius: 15px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.categories ul {
-list-style: none;
-    
-    
-display: flex;
-    padding: 0;
-    margin: 0;
-    
-    
-width: 100%;
-    justify-content: space-around;
-}
-
-.categories li {
-    
-
-text-align: center;
-    
-    
-display: flex;
-    
-  
-align-items: center; /* محاذاة الأيقونات والنصوص عموديًا */
-    padding: 5px 10px;
-    transition: background-color 0.3s;
-    cursor: pointer;
-}
-
-.categories li:hover {
-    background-color: #0bc5ac;
-}
-
-.categories a {
-    
-   
-text-decoration: none;
-    
-   
-color: #333;
-    font-size: 16px;
-    display: flex;
-    
-
-align-items: center; /* محاذاة الأيقونات والنصوص عموديًا */
-}
-
-.categories i {
-    margin-left: 10px;
-    
-   
-font-size: 20px;
-    color: #0eb6a8;
-}
-
-@media (max-width: 768px) {
-    .categories li {
-        flex: 1 1 100%;
-    }
-}
-
-@media (max-width: 576px) {
-    .categories li {
-        flex: 1 1 100%;
-        
-    
-
-        
-justify-content: center;
-    }
-}
-
- /* تنسيق الفوتر */
-.magic-footer {
+            display: flex;
+            flex-wrap: wrap; /* يجعل العناصر تتلائم في أسطر متعددة عند الحاجة */
+            justify-content: space-around;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .categories ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            justify-content: space-around;
+        }
+        .categories li {
+            text-align: center;
+            display: flex;
+            align-items: center; /* محاذاة الأيقونات والنصوص عموديًا */
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .categories li:hover {
+            background-color: #0bc5ac;
+        }
+        .categories a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            display: flex;
+            align-items: center; /* محاذاة الأيقونات والنصوص عموديًا */
+        }
+        .categories i {
+            margin-left: 10px;
+            font-size: 20px;
+            color: #0eb6a8;
+        }
+        @media (max-width: 768px) {
+            .header .search-bar {
+                max-width: 250px;
+            }
+            .categories li {
+                flex: 1 1 100%;
+            }
+        }
+        @media (max-width: 576px) {
+            .header .site-name {
+                font-size: 18px;
+            }
+            .header .search-bar input {
+                padding: 6px;
+            }
+            .categories li {
+                flex: 1 1 100%;
+                justify-content: center;
+            }
+            .magic-footer {
+                flex-direction: column;
+                align-items: center;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+            }
+            .nav-item {
+                font-size: 24px;
+                margin: 5px 0;
+            }
+        }
+       /* تنسيق الفوتر */
+       .magic-footer {
     display: flex;
     justify-content: space-around; /* توزيع العناصر بشكل متساوي */
     align-items: center;
@@ -178,7 +165,8 @@ justify-content: center;
     bottom: 8px; /* وضعها في أسفل الشاشة */
     left: 30px; /* تباعد 10 بكسل عن الجانب الأيسر */
     right: 30px; /* تباعد 10 بكسل عن الجانب الأيمن */
-    max-width: calc(100% - 20px); /* تأكد من أن العرض لا يتجاوز عرض الشاشة مع التباعد */
+    max-width: calc(100% - 60px); /* تأكد من أن العرض لا يتجاوز عرض الشاشة مع التباعد */
+    flex-direction: row; /* ترتيب العناصر بشكل أفقي */
 }
 
 .nav-item {
@@ -186,7 +174,7 @@ justify-content: center;
     color: #fff;
     text-decoration: none;
     transition: color 0.2s, transform 0.3s;
-    font-size: 100px;
+    font-size: 16px;
     border-radius: 5px; /* زوايا مدورة */
 }
 
@@ -201,12 +189,6 @@ justify-content: center;
     font-size: 12px;
 }
 
-.nav-item:hover {
-    background-color: #0f9397; /* تغيير الخلفية عند التمرير */
-    color: #ffffff;
-    transform: scale(1.5);
-}
-
 /* إضافة تأثير حركة للأيقونات */
 .nav-item i {
     transition: color 0.8s, transform 0.5s;
@@ -217,6 +199,19 @@ justify-content: center;
     transform: rotate(15deg);
 }
 
+@media (max-width: 576px) {
+    .magic-footer {
+        flex-direction: row; /* تأكد من أن العناصر تبقى مرتبة بشكل أفقي حتى على الشاشات الصغيرة */
+    }
+
+    .nav-item i {
+        font-size: 20px; /* تصغير حجم الأيقونة قليلاً على الشاشات الصغيرة */
+    }
+
+    .nav-item span {
+        font-size: 10px; /* تصغير حجم النص تحت الأيقونات على الشاشات الصغيرة */
+    }
+}
 
     </style>
 </head>
@@ -230,7 +225,6 @@ justify-content: center;
     </div>
     <div class="container">
         <div class="colored-bar"></div>
-
         <aside class="categories">
             <ul>
                 <li><i class="fas fa-car"></i><a href="#">سيارات</a></li>
@@ -240,7 +234,6 @@ justify-content: center;
                 <li><i class="fas fa-th-large"></i><a href="#">جميع الفئات</a></li>
             </ul>
         </aside>
-
         <div id="posts-container"></div>
     </div>
     <footer class="magic-footer">
@@ -248,7 +241,6 @@ justify-content: center;
             <i class="fa fa-home"></i>
             <span>الرئيسية</span>
         </a>
-       
         <a href="post.html" class="nav-item">
             <i class="fa fa-upload"></i>
             <span>إضافة إعلان</span>
@@ -261,63 +253,56 @@ justify-content: center;
     <script type="module">
         import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-    const supabaseUrl = 'https://lnmiqfeoninnhywbtzqs.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWlxZmVvbmlubmh5d2J0enFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNTIwNzAsImV4cCI6MjAzOTcyODA3MH0.DMwYJwwdOeJ7zdHaFS-2sTiYXdX9rQt06TadDGTfU3U';
-    const supabase = createClient(supabaseUrl, supabaseKey);
+        const supabaseUrl = 'https://lnmiqfeoninnhywbtzqs.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWlxZmVvbmlubmh5d2J0enFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNTIwNzAsImV4cCI6MjAzOTcyODA3MH0.DMwYJwwdOeJ7zdHaFS-2sTiYXdX9rQt06TadDGTfU3U';
+        const supabase = createClient(supabaseUrl, supabaseKey);
 
-    async function fetchPosts() {
-        const { data: posts, error } = await supabase
-            .from('posts') // تأكد من صحة اسم الجدول
-            .select(`
-                id, 
-                content, 
-                media_url, 
-                created_at, 
-                user_id (username)
-            `)
-            .order('id', { ascending: false });
+        async function fetchPosts() {
+            const { data: posts, error } = await supabase
+                .from('posts') // تأكد من صحة اسم الجدول
+                .select('id, content, media_url, created_at, users(username)')
+                .order('id', { ascending: false });
 
-        if (error) {
-            console.error('Error fetching posts:', error);
-            return;
-        }
-
-        const postsContainer = document.getElementById('posts-container');
-        postsContainer.innerHTML = '';
-
-        posts.forEach(post => {
-            const postCard = document.createElement('div');
-            postCard.className = 'post-card';
-
-            let mediaContent = '';
-            if (post.media_url) {
-                if (/\.(jpg|jpeg|png|gif)$/i.test(post.media_url)) {
-                    mediaContent = `<img src="${post.media_url}" alt="Media">`;
-                } else if (/\.(mp4|webm|ogg)$/i.test(post.media_url)) {
-                    mediaContent = `<video controls>
-                                    <source src="${post.media_url}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>`;
-                }
+            if (error) {
+                console.error('خطأ في جلب المنشورات:', error);
+                return;
             }
 
-            postCard.innerHTML = `
-                <h5>${post.users.username}</h5>
-                <p>${post.content.replace(/\n/g, '<br>')}</p>
-                ${mediaContent}
-                <div class="post-footer">
-                    <button>Like</button>
-                    <button>Add to Favorites</button>
-                    <span>${new Date(post.created_at).toLocaleDateString()}</span>
-                    <span>Views: 123</span> <!-- Adjust as needed -->
-                </div>
-            `;
-            postsContainer.appendChild(postCard);
-        });
-    }
+            const postsContainer = document.getElementById('posts-container');
+            postsContainer.innerHTML = '';
+            posts.forEach(post => {
+                const postCard = document.createElement('div');
+                postCard.className = 'post-card';
 
-    fetchPosts();
-</script>
+                let mediaContent = '';
+                if (post.media_url) {
+                    if (/\.(jpg|jpeg|png|gif)$/i.test(post.media_url)) {
+                        mediaContent = `<img src="${post.media_url}" alt="Media">`;
+                    } else if (/\.(mp4|webm|ogg)$/i.test(post.media_url)) {
+                        mediaContent = `
+                            <video controls>
+                                <source src="${post.media_url}" type="video/mp4">
+                                متصفحك لا يدعم عنصر الفيديو.
+                            </video>`;
+                    }
+                }
+
+                postCard.innerHTML = `
+                    <h5>${post.users.username}</h5>
+                    <p>${post.content.replace(/\n/g, '<br>')}</p>
+                    ${mediaContent}
+                    <div class="post-footer">
+                        <button>أعجبني</button>
+                        <button>إضافة إلى المفضلة</button>
+                        <span>${new Date(post.created_at).toLocaleDateString()}</span>
+                        <span>المشاهدات: 123</span> <!-- تعديل حسب الحاجة -->
+                    </div>`;
+                postsContainer.appendChild(postCard);
+            });
+        }
+
+        fetchPosts();
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
